@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="static/bootstrap.min.css">
+	<title>Aqua</title>
+</head>
+<body>
+
+	<div class="container">
+		<table  style="position: absolute; left: calc(50% - 140px);border-collapse: separate; border-spacing: 10px 5px;">
+			
+			{% for relay in relays %}
+			<tr><td><div class = "font{{relay.number}}" style="color:{% if relay.state %}green{% else %}red{% endif %}">R{{relay.number}}:</div></td>
+				<td><div class = "font{{relay.number}}" style="color:{% if relay.state %}green{% else %}red{% endif %}">{{relay.name}}</div></td><td>
+					<div class="btn-group btn-group-toggle" data-toggle="buttons">
+						<label class="btn btn-secondary">
+							<input type="radio" name="{{relay.number}}0" class="r r{{relay.number}} auto" {% if relay.mode == 0 %}checked{% endif %}> Auto
+						</label>
+						<label class="btn btn-secondary">
+							<input type="radio" name="{{relay.number}}1" class="r r{{relay.number}} on" {% if relay.mode == 1 %}checked{% endif %}> On
+						</label>
+						<label class="btn btn-secondary">
+							<input type="radio" name="{{relay.number}}2" class="r r{{relay.number}} off" {% if relay.mode == 2 %}checked{% endif %}> Off
+						</label>
+					</div>
+				</td></tr> 
+			{% endfor %}
+		</table>
+	</div>
+
+	<script src="static/jquery-3.4.1.js"></script>
+	<script src="static/popper.min.js"></script>
+	<script src="static/bootstrap.min.js"></script>
+	<script src="static/main.js"></script>
+</body>
+</html>
