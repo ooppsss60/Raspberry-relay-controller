@@ -4,12 +4,22 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="static/bootstrap.min.css">
+	<link rel="stylesheet" href="static/style.css">
 	<title>Aqua</title>
 </head>
 <body>
 
-	<div class="container">
-		<table  style="position: absolute; left: calc(50% - 140px);border-collapse: separate; border-spacing: 10px 5px;">
+	<ul class="nav nav-tabs" id="myTab" role="tablist">
+		<li class="nav-item">
+			<a class="nav-link active" id="control-tab" data-toggle="tab" href="#control" role="tab" aria-controls="control" aria-selected="true">Control</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" id="time-tab" data-toggle="tab" href="#time" role="tab" aria-controls="time" aria-selected="false">Time</a>
+		</li>
+	</ul>
+	<div class="tab-content" id="myTabContent">
+		<div class="tab-pane fade show active" id="control" role="tabpanel" aria-labelledby="control-tab">
+			<table  style="position: absolute; left: calc(50% - 140px);border-collapse: separate; border-spacing: 10px 5px;">
 			
 			{% for relay in relays %}
 			<tr><td><div class = "font{{relay.number}}" style="color:{% if relay.state %}green{% else %}red{% endif %}">R{{relay.number}}:</div></td>
@@ -26,8 +36,20 @@
 						</label>
 					</div>
 				</td></tr> 
-			{% endfor %}
-		</table>
+				{% endfor %}
+			</table>
+		</div>
+		<div class="tab-pane fade" id="time" role="tabpanel" aria-labelledby="time-tab">
+			<table  style="position: absolute; left: calc(50% - 140px);border-collapse: separate; border-spacing: 10px 5px;">
+			
+			{% for relay in relays %}
+			<tr><td><div class = "font{{relay.number}}" style="color:{% if relay.state %}green{% else %}red{% endif %}">R{{relay.number}}:</div></td>
+				<td><div class = "font{{relay.number}}" style="color:{% if relay.state %}green{% else %}red{% endif %}">{{relay.name}}</div></td><td>
+					{{relay.start}}-{{relay.stop}}
+				</td></tr> 
+				{% endfor %}
+			</table>
+		</div>
 	</div>
 
 	<script src="static/jquery-3.4.1.js"></script>

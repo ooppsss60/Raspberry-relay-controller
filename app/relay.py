@@ -14,6 +14,8 @@ class Relay():
 		self.stop_m = stop_m
 		self.startTime = (start_h * 60) + start_m
 		self.stopTime = (stop_h * 60) + stop_m
+		self.start = str(start_h)+":"+ ('0'+str(start_m)  if start_m<=9  else str(start_m))
+		self.stop = str(stop_h)+":"+ ('0'+str(stop_m)  if stop_m<=9  else str(stop_m))
 		self.state = False
 		self.mode = 0
 		Relay.relays.append(self)
